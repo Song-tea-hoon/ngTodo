@@ -1,3 +1,38 @@
-<p>
-  jquery works!
-</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>My Todo's</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout="row">
+        <input type="text" placeholder="할일" id="input_todo" fxFlex="4 1 auto"/>
+        <button type="button" class="active" fxFlex="1 1 auto" onclick="add_todo()">추가</button>
+      </div>
+      
+      <hr>
+  
+      <table class="table">
+        <thead>
+          <tr>
+            <th>완료</th>
+            <th>todo</th>
+            <th>생성일</th>
+            <th>수정일</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody id="todo_list">
+            <tr>
+              <td>
+                <input type="checkbox" checked>
+              </td>
+              <td>빨래하기</td>
+              <td>2017-10-11 18:11</td>
+              <td>2017-10-11 18:11</td>
+              <td>
+                <button type="button">삭제</button>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>

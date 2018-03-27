@@ -6,9 +6,110 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <app-root></app-root>
 </body>
+<script>
+  var todoList=[];
+
+  function add_todo(){
+    var todo = {
+      isFinished: false,
+      todo: $('#input_todo').val(),
+      created: new Date(),
+      updated: new Date()
+    };
+
+    todoList.push(todo);
+
+    refresh();
+  }
+
+  function refresh(){
+    $('#todo_list').empty();
+
+    todoList.forEach(function(item, index){
+      var todo =
+        '<tr>' +
+          '<td>' +
+            '<input type="checkbox" ' + (item.isFinished?'checked':'') + ' value="' + item.isFinished + '" onchange="update(' + index + ')">' +
+          '</td>' + 
+          (item.isFinished?'<td style="text-decoration: line-through">':'<td>') + item.todo + '</td>' +
+          '<td>' + item.created + '</td>' +
+          '<td>' + item.updated + '</td>' +
+          '<td>' +
+            '<button type="button" onclick="remove(' + index + ')">삭제</button>' +
+          '</td>' +
+        '</tr>';
+      $('#todo_list').prepend(todo);
+    })
+  }
+
+  $(document).ready(function(){
+    console.log('document ready');
+    getTodoList();
+  });
+
+  function getTodoList(){
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method:'GET',
+      dataType: 'json',
+      success: function(data) {
+        console.log(data);
+        todoList = data;
+        refresh();
+      }
+    })
+  }
+
+  function add_todo() {
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'POST',
+      data: JSON.stringify({todo:$('#input_todo').val(), isFinished: false}),
+      contentType:'application/json',
+      datatype:'json',
+      success: function(data){
+        console.log(data);
+        getTodoList();
+      }
+    });
+  }
+
+  function update(index){
+    var updateTodo = {
+      todo_id: todoList[index].todo_id,
+      isFinished: !todoList[index].isFinished,
+      todo: todoList[index].todo
+    }
+
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo',
+      method: 'PUT',
+      data: JSON.stringify(updateTodo),
+      contentType:'application/json',
+      dataType:'json',
+      success: function(data) {
+        console.log(data);
+        getTodoList();
+      }
+    });
+  }
+
+  function remove(index) {
+    $.ajax({
+      url: 'http://www.javabrain.kr:8080/api/todo?todo_id=' + todoList[index].todo_id,
+      method: 'DELETE',
+      dataType:'json',
+      success: function(data){
+        console.log(data);
+        getTodoList();
+      }
+    });
+  }
+</script>
 </html>

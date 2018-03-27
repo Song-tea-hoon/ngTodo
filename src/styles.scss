@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'assets/styles/app';
 
 *{
     -webkit-box-sizing: border-box;
@@ -18,5 +19,30 @@ html, body{
 @media screen and (max-width: 599px){
     html, body {
         font-size: 12px;
+    }
+}
+
+table{
+    background-color:transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table{
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    thead, tbody{
+        tr{
+            th, td{
+                padding: 8px;
+                line-height: 1.42857143;
+                vertical-align: top;
+                border-top: 1px solid #ddd;
+            }
+        }
+    }
+    thead{
+        background-color: #ddd;
     }
 }

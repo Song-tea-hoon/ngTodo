@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { MatMenuModule } from '@angular/material';
-import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -23,8 +23,12 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

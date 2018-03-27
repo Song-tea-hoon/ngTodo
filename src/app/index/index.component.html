@@ -1,21 +1,27 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="/jquery">
-    <mat-icon>input</mat-icon>
-    <span>jquery</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>input</mat-icon>
-    <span>angular</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>input</mat-icon>
-    <span>http</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>input</mat-icon>
-    <span>news</span>
-  </button>
-</mat-menu>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  AngularTodo
+  <span style="flex: 1 1 auto"></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/jquery">
+      <mat-icon>input</mat-icon>
+      <span>jquery</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>input</mat-icon>
+      <span>angular</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>input</mat-icon>
+      <span>http</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>input</mat-icon>
+      <span>news</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
