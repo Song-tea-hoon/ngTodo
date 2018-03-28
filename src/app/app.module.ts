@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-import { MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
+import { HttpClientModule } from "@angular/common/http";
+import { MatMenuModule, MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,9 @@ import { IndexComponent } from './index/index.component';
 import { HomeComponent } from './home/home.component';
 import { JqueryComponent } from './jquery/jquery.component';
 import { AppRoutingModule } from './app-routing.module';
+import { UserService } from './user.service';
+import { AngularComponent } from './angular/angular.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,20 +20,25 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     IndexComponent,
     HomeComponent,
-    JqueryComponent
+    JqueryComponent,
+    AngularComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatMenuModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

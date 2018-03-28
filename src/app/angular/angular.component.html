@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>My Todo's</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form ngNativeValidate #myForm="ngForm" (submit)="add_todo()">
+      <div fxLayout="row" fxLayoutAlign="center start">
+        <mat-form-field fxFlex="4 1 auto">
+          <input matInput type="text" placeholder="할일" name="todo" [(ngModel)]="newTodo.todo" required/>
+        </mat-form-field>
+        <button mat-raised-button color="primary" fxFlex="1 1 auto">추가</button>
+      </div>
+    </form>
+    <hr>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>완료</th>
+          <th>todo</th>
+          <th>생성일</th>
+          <th>수정일</th>
+          <th>삭제</th>
+        </tr>
+      </thead>
+      <tbody id="todo_list">
+        <tr *ngFor="let item of todoList">
+          <td>
+            <input type="checkbox" (change)="update(item)">
+          </td>
+          <td [class.todo_canceled]="item.isFinished">{{item.todo}}</td>
+          <td>{{item.created}}</td>
+          <td>{{item.updated}}</td>
+          <td>
+            <button mat-raised-button color="warn">삭제</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
