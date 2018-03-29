@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { HighlightDirective } from './highlight.directive';
 import { MydatePipe } from './mydate.pipe';
 
-
 @NgModule({
   declarations: [
     AppComponent,
