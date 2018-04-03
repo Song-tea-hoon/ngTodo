@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AdminService {
@@ -17,5 +18,13 @@ export class AdminService {
 
    findNews(params: any):Promise<any>{
      return this.http.post(this.SERVER + '/api/newsList', params, {headers:this.headers}).toPromise();
+   }
+   
+   findOneNews(params: any):Promise<any>{
+     return this.http.get(this.SERVER + `/api/news?news_id=${params}`).toPromise();
+   }
+
+   addNews(params: any){
+     return this.http.put(this.SERVER + '/api/news', params, {headers:this.headers}).toPromise();
    }
 }
