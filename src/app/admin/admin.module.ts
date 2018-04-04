@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule, 
@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { ViewComponent } from './news/view/view.component';
 import { WriteComponent } from './news/write/write.component';
+import { ModifyComponent } from './news/modify/modify.component';
 
 
 @NgModule({
@@ -44,8 +45,9 @@ import { WriteComponent } from './news/write/write.component';
     HomeComponent,
     NewsComponent,
     ViewComponent,
-    WriteComponent
+    WriteComponent,
+    ModifyComponent
   ],
-  providers: [AdminService]
+  providers: [AdminService, Location]
 })
 export class AdminModule { }

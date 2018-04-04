@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsVo } from '../../../domain/news.vo';
 import { AdminService } from '../../admin.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-view',
@@ -11,8 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewComponent implements OnInit {
 
   news: NewsVo;
-
-  constructor(private route :ActivatedRoute, private adminService: AdminService) { }
+  
+  constructor(
+    private route :ActivatedRoute, 
+    private router:Router,
+    private adminService: AdminService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -25,4 +31,9 @@ export class ViewComponent implements OnInit {
     });
   }
 
+  gotoModify(){
+    let path = this.location.path();
+    console.log(path);
+    this.router.navigateByUrl(path.replace('view', 'modify'));
+  }
 }

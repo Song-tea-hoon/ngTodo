@@ -27,4 +27,16 @@ export class AdminService {
    addNews(params: any){
      return this.http.put(this.SERVER + '/api/news', params, {headers:this.headers}).toPromise();
    }
+
+   imageUpload(formData: FormData){
+    let headers = new HttpHeaders();
+    // headers.append('Content-Type', 'multipart/form-data'); //브라우저가 자동 생성함.
+    headers.append('Accept', 'application/json');
+
+    return this.http.post(this.SERVER + '/api/imageUpload', formData, {headers: headers}).toPromise();
+  }
+
+  modifyNews(params: any){
+    return this.http.put(this.SERVER+'/api/news', params, {headers: this.headers}).toPromise();
+  }
 }
