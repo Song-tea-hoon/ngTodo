@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../../admin.service';
 import { NewsVo } from '../../../domain/news.vo';
 
@@ -14,6 +14,7 @@ export class ModifyComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
+    private router: Router,
     private adminService:AdminService
   ) { }
 
@@ -25,6 +26,15 @@ export class ModifyComponent implements OnInit {
           this.news = res;
         });
     });
+  }
+
+  modifyNews(){
+    this.adminService.modifyNews(this.news)
+      .then(res => {
+        if(res['result'] === 0){
+          this.router.navigate(['../..'], {relativeTo: this.route});
+        }
+      })
   }
 
 }

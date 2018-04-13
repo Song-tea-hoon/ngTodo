@@ -3,6 +3,7 @@ import { NewsVo } from '../../../domain/news.vo';
 import { AdminService } from '../../admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { ResultVo } from '../../../domain/result.vo';
 
 @Component({
   selector: 'app-view',
@@ -35,5 +36,15 @@ export class ViewComponent implements OnInit {
     let path = this.location.path();
     console.log(path);
     this.router.navigateByUrl(path.replace('view', 'modify'));
+  }
+
+  deleteNews(){
+    console.log(this.news);
+    let news_id = this.news.news_id;
+    this.adminService.removeNews(news_id)
+      .then((res:ResultVo)=>{
+        console.log(res);
+        if(res.result === 0)this.router.navigateByUrl('/admin/news');
+      })
   }
 }

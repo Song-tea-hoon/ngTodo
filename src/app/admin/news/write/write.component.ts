@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NewsVo } from '../../../domain/news.vo';
 import { AdminService } from '../../admin.service';
 import { HttpHeaders } from '@angular/common/http';
+import { ResultVo } from '../../../domain/result.vo';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-write',
@@ -13,7 +16,7 @@ export class WriteComponent implements OnInit {
   news = new NewsVo;
   fileList : FileList;
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private snackbar: MatSnackBar, private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,8 +24,12 @@ export class WriteComponent implements OnInit {
   addNews(){
     // snackbar 구현부
     this.adminService.addNews(this.news)
-      .then(res => {
+      .then((res: ResultVo) => {
         console.log(res);
+        if(res.result === 0){
+          this.snackbar.open(res.value, null, {duration:3000});
+          this.router.navigateByUrl('/admin/news');
+        }
       })
   }
 

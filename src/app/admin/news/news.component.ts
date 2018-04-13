@@ -22,6 +22,7 @@ export class NewsComponent implements OnInit {
   }
 
   getNewsList(){
+    console.log('getNewsList');
     let params = {
       start_index: this.page.pageIndex * this.page.pageSize,
       page_size: this.page.pageSize
@@ -29,7 +30,7 @@ export class NewsComponent implements OnInit {
 
     this.adminService.findNews(params)
       .then(res=>{
-        //console.log(res);
+        console.log(res);
         this.newsList = res.data;
         this.page.totalCount = res.total;
       })
